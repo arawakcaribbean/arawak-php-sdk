@@ -56,4 +56,4 @@ For example:
         print_r($e->getMessage());
     }catch (\Awaraks\Controllers\Exceptions\ArawaksException $e) {
         print_r($e->getMessage());
-}
+    }

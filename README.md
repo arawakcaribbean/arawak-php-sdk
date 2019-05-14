@@ -1,7 +1,7 @@
 # PHP SDK for Arawak Platform
 
 
-[arawak-php-sdk](https://dev.azure.com/caribbean-tour-platform/_git/arawaks-sdks) is a library for access to API REST  for Arawaks Platform for PHP 5.3+.  Basically provide the features and flexibility to get the job done and make those features really easy to use.
+[arawak-php-sdk](https://github.com/arawakcaribbean/arawak-php-sdk) is a library for access to API REST  for Arawaks Platform for PHP 5.3+.  Basically provide the features and flexibility to get the job done and make those features really easy to use.
 
 Features
 
@@ -17,7 +17,7 @@ Features
 ## Install from Source
 arawak-php-sdk is PSR-0 compliant and can be installed using [composer](http://getcomposer.org/).
 
- - Download project from [arawak-php-sdk](https://dev.azure.com/caribbean-tour-platform/_git/arawaks-sdks) 
+ - Download project from [arawak-php-sdk](https://github.com/arawakcaribbean/arawak-php-sdk) 
  - Into folder that contains a source code
  - Exec php composer.phar install
         

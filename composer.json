@@ -1,0 +1,26 @@
+{
+    "name": "sacavix/awaraks-php-sdk",
+    "description": "SDK to comunicate with APIs is awaraks platform",
+    "type": "library",
+    "require": {
+        "nategood/httpful": "*",
+        "symfony/dotenv": "*",
+        "netresearch/jsonmapper": "*",
+        "php": ">=5.3"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Yasiel Perez",
+            "email": "yasielpv1503@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "autoload": {
+        "psr-4": {
+            "Awaraks\\": "src/"
+        }
+    }
+
+
+}

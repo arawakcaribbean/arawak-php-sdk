@@ -3,7 +3,7 @@ namespace Awaraks\Entity\Resource;
 
 /**
  * Created by PhpStorm.
- * User: yasiel
+ * User: Bran Stark
  * Date: 13/05/19
  * Time: 19:50
  */

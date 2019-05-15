@@ -68,13 +68,13 @@ try {
 
 
         #MAPS
-    /*
+
        #----------Get info for places id,example call function------------#
 
-       $id="2qc5i2oBvhGfKisLFk9hE";
+       $id="EisxMyBNYXJrZXQgU3RyZWV0LCBXaWxtaW5ndG9uLCBOQyAyODQwMSwgVVNB";
        $response = $service->getPlaceInfo($id);
        print_r($response);
-   */
+
 
 
      #----------Get places by search criteria,example call function------------#

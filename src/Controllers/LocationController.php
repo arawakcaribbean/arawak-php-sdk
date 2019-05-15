@@ -165,7 +165,7 @@ class LocationController extends BaseController {
 
      */
     public function getPlaceInfo($placeId) {
-        $uri = "/maps/places/$placeId";
+        $uri = "/location/maps/places/$placeId";
         $response = $this->_get($uri);
         return json_decode($response);
 
@@ -189,7 +189,7 @@ class LocationController extends BaseController {
 
      */
     public function getPlaceListByPlaceName($placeName) {
-        $uri = "/maps/places/name/$placeName";
+        $uri = "/location/maps/places/name/$placeName";
         $response = $this->_get($uri);
         return json_decode($response);
 
@@ -215,7 +215,7 @@ class LocationController extends BaseController {
 
      */
     public function getDirectionsMap($origin_lat1,$origin_lon1,$destiny_lat2,$destiny_lon2) {
-        $uri = "/maps/directions/$origin_lat1/$origin_lon1/$destiny_lat2/$destiny_lon2";
+        $uri = "/location/maps/directions/$origin_lat1/$origin_lon1/$destiny_lat2/$destiny_lon2";
         $response = $this->_get($uri);
         return json_decode($response);
 

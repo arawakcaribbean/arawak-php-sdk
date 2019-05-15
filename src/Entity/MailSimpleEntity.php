@@ -107,7 +107,7 @@ class MailSimpleEntity implements \JsonSerializable
         return array(
             "detail"=>$this->detail->jsonSerialize(),
             "head"=>$this->head->jsonSerialize(),
-            "headers"=>$this->headers
+            "headers"=>json_encode([])
         );
     }
 }

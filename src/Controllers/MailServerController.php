@@ -77,7 +77,8 @@ class MailServerController extends BaseController {
 
     public function sendMailWithTemplate(\Awaraks\Entity\MailEntity $model){
         $uri = "/mailsender/email/template";
-        $response = $this->_post($uri,$model->jsonSerialize());
+
+        $response = $this->_post($uri,json_encode($model->jsonSerialize()));
         return $this->mapper->map(json_decode($response), new Mail());
 
     }

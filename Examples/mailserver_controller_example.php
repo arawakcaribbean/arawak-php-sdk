@@ -7,21 +7,19 @@ require_once __DIR__ . './../vendor/autoload.php'; // Autoload files using Compo
 
 $service = new Awaraks\Controllers\MailServerController();
 try {
-    #----------Create a mail sender simple,example call function------------#
-    /*
-    $details = new \Awaraks\Entity\MailSimpleDetailEntity([],"dfsd","");
-    $head = new \Awaraks\Entity\MailHeadEntity([],[],"sdds@sdf.sd",[]);
-    $model = new \Awaraks\Entity\MailSimpleEntity($details,$head,null);
-    $response = $service->sendSimpleMail($model);
-    print_r($response);
-    */
+
 
     #----------Create a mail sender with template,example call function------------#
     /*
-    $template=new \Awaraks\Entity\MailTemplateEntity("http://ruta.template",[]);
-    $details = new \Awaraks\Entity\MailTemplateDetailEntity([],$template,"");
-    $head = new \Awaraks\Entity\MailHeadEntity([],[],"",[]);
-    $model = new \Awaraks\Entity\MailEntity($details,$head,[]);
+    $vars = array(
+        'code'=>"value"
+    );
+    $from="arawakdigital@gmail.com";
+    $to=["example@gmail.com"];
+    $template=new \Awaraks\Entity\MailTemplateEntity($vars);
+    $details = new \Awaraks\Entity\MailTemplateDetailEntity([],$template,"Asunto");
+    $head = new \Awaraks\Entity\MailHeadEntity([],[],$from,$to);
+    $model = new \Awaraks\Entity\MailEntity($details,$head,array());
     $response = $service->sendMailWithTemplate($model);
     print_r($response);
     */

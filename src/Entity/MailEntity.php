@@ -97,9 +97,9 @@ class MailEntity implements \JsonSerializable
     function jsonSerialize()
     {
         return array(
-            "detail"=>$this->detail->jsonSerialize(),
+            "details"=>$this->detail->jsonSerialize(),
             "head"=>$this->head->jsonSerialize(),
-            "headers"=>$this->headers,
+            "headers"=>new \stdClass(),
         );
     }
 }

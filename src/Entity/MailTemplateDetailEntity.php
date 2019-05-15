@@ -92,7 +92,7 @@ class MailTemplateDetailEntity implements \JsonSerializable
     {
         return array(
             "attachments"=>$this->attachments,
-            "body"=>$this->template,
+            "template"=>$this->template,
             "subject"=>$this->subject,
         );
     }

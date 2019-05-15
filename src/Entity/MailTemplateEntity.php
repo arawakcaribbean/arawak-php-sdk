@@ -26,12 +26,11 @@ class MailTemplateEntity implements \JsonSerializable
 
     /**
      * MailTemplateEntity constructor.
-     * @param string $url
-     * @param \string[] $vars
+     * @param \stdClass $vars
      */
-    public function __construct($url, array $vars)
+    public function __construct( $vars)
     {
-        $this->url = $url;
+        $this->url = "http://upload.opencaribbean.org/download/737a520e-4f9f-4a28-b17b-f315f1d7fb77.tpl";
         $this->vars = $vars;
     }
 
@@ -78,7 +77,7 @@ class MailTemplateEntity implements \JsonSerializable
     function jsonSerialize()
     {
         return array(
-            'url'=>$this->url,
+            'url'=>"http://upload.opencaribbean.org/download/737a520e-4f9f-4a28-b17b-f315f1d7fb77.tpl",
             'vars'=>$this->vars,
         );
     }

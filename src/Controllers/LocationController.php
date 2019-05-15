@@ -146,4 +146,85 @@ class LocationController extends BaseController {
     }
 
 
+
+    #MAPS
+    /**
+     * Get info for places id , API:"http://api.opencaribbean.org/api/v1/maps/places/{placeId}"
+     * @params string $placeId
+     * @return \stdClass $mapInfo
+     * @throws BadRequestException
+     * @throws BadGatewayException
+     * @throws ForbiddenException
+     * @throws BadGatewayException
+     * @throws GatewayTimeoutException
+     * @throws InternalServerErrorException
+     * @throws NotFoundException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ArawaksException
+
+     */
+    public function getPlaceInfo($placeId) {
+        $uri = "/maps/places/$placeId";
+        $response = $this->_get($uri);
+        return json_decode($response);
+
+    }
+
+
+    /**
+     * Get places by search criteria , API:"http://api.opencaribbean.org/api/v1/maps/places/name/{placeName}"
+     * @params string $placeName
+     * @return \stdClass[] $mapInfo
+     * @throws BadRequestException
+     * @throws BadGatewayException
+     * @throws ForbiddenException
+     * @throws BadGatewayException
+     * @throws GatewayTimeoutException
+     * @throws InternalServerErrorException
+     * @throws NotFoundException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ArawaksException
+
+     */
+    public function getPlaceListByPlaceName($placeName) {
+        $uri = "/maps/places/name/$placeName";
+        $response = $this->_get($uri);
+        return json_decode($response);
+
+    }
+
+    /**
+     * Get the places list near to a location , API:"http://api.opencaribbean.org/api/v1/maps/directions/{origin_lat1}/{origin_lon1}/{destiny_lat2}/{destiny_lon2}"
+     * @params string $origin_lat1
+     * @params string $origin_lon1
+     * @params string $destiny_lat2
+     * @params string $destiny_lon2
+     * @return \stdClass $mapInfo
+     * @throws BadRequestException
+     * @throws BadGatewayException
+     * @throws ForbiddenException
+     * @throws BadGatewayException
+     * @throws GatewayTimeoutException
+     * @throws InternalServerErrorException
+     * @throws NotFoundException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ArawaksException
+
+     */
+    public function getDirectionsMap($origin_lat1,$origin_lon1,$destiny_lat2,$destiny_lon2) {
+        $uri = "/maps/directions/$origin_lat1/$origin_lon1/$destiny_lat2/$destiny_lon2";
+        $response = $this->_get($uri);
+        return json_decode($response);
+
+    }
+
+
+
+
+
+
+
 }

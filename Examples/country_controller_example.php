@@ -26,11 +26,11 @@ try {
         */
 
         #----------Delete a country,example call function------------#
-
+        /*
             $ID = "26cOmWoBvhGfKisLO1dR";
             $response = $service->delete($ID);
             print_r($response);
-
+        */
 
         #----------get all country,example call function------------#
           /*

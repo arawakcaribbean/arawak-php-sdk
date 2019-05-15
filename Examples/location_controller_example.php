@@ -66,6 +66,34 @@ try {
         print_r($response);
     */
 
+
+        #MAPS
+    /*
+       #----------Get info for places id,example call function------------#
+
+       $id="2qc5i2oBvhGfKisLFk9hE";
+       $response = $service->getPlaceInfo($id);
+       print_r($response);
+   */
+
+
+     #----------Get places by search criteria,example call function------------#
+    /*
+     $id="a";
+     $response = $service->getPlaceListByPlaceName($id);
+     print_r($response);
+    */
+
+    #----------Get the places list near to a location,example call function------------#
+    /*
+    $origin_lat1=23.2323;
+    $origin_lon1=-81.345345;
+    $destiny_lat2=23.1233;
+    $destiny_lon2=-81.1223;
+    $response = $service->getDirectionsMap($origin_lat1,$origin_lon1,$destiny_lat2,$destiny_lon2);
+    print_r($response);
+    */
+
 } catch (\Awaraks\Controllers\Exceptions\BadRequestException $e) {
     print_r($e->getMessage());
 } catch (\Awaraks\Controllers\Exceptions\BadGatewayException $e) {

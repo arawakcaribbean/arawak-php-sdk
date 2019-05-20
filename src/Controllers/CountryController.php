@@ -34,9 +34,11 @@ class CountryController extends BaseController {
     }
 
     /**
-     * Returns a list of countries applying filters and parameters for paging, API:"http://api.opencaribbean.org/api/v1/location/countries/search?name=cuba&page=1&size=10"
+     * Returns a list of countries , API:"http://api.opencaribbean.org/api/v1/location/countries?countryCode=CU&page=0&pagination=true&query=cu&size=10"
      *
      * @param string $query Partially name of country
+     * @param string $countryCode
+     * @param boolean $pagination
      * @param integer $page  Page to list
      * @param integer $size  Count element by page to list
      * @return PageResultCountry $pageResultCountry
@@ -51,55 +53,13 @@ class CountryController extends BaseController {
      * @throws UnauthorizedException
      * @throws ArawaksException
      */
-    public function getPageListWithFilter($query, $page, $size) {
-        $uri = "location/countries/search?name=$query&page=$page&size=$size";
+    public function getList($countryCode,$query,$pagination, $page, $size) {
+        $uri = "location/countries?query=$query&countryCode=$countryCode&pagination=$pagination&page=$page&size=$size";
         $response = $this->_get($uri);
-        return $this->mapper->map(json_decode($response), new PageResultCountry());
+        return json_decode($response);
 
     }
 
-    /**
-     * Returns a list of countries parameters for paging  API:"http://api.opencaribbean.org/api/v1/location/countries/list?page=1&size=10"
-     * @param integer $page  Page to list
-     * @param integer $size  Count element by page to list
-     * @return PageResultCountry $pageResultCountry
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
-     */
-    public function getPageList($page, $size) {
-        $uri = "location/countries/list?page=$page&size=$size";
-        $response = $this->_get($uri);
-        return $this->mapper->map(json_decode($response), new PageResultCountry());
-
-    }
-
-    /**
-     * Returns a list with all countries, API:"http://api.opencaribbean.org/api/v1/location/countries"
-     * @return Country[]
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
-     */
-    public function getAll() {
-        $uri = "location/countries";
-        $response = $this->_get($uri);
-        return $this->mapper->mapArray(json_decode($response),array(),"Awaraks\Mapper\Country");
-    }
 
 
 

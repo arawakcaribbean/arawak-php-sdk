@@ -7,17 +7,23 @@ require_once __DIR__ . './../vendor/autoload.php'; // Autoload files using Compo
 $service = new Awaraks\Controllers\LocationController();
 try {
     #----------get all location,example call function------------#
-    /*
-        $response = $service->getAll();
+        $countryName="Jamaica";
+        $page=1;
+        $pagination=true;
+        $query="King";
+        $resourceId="";
+        $size=10;
+        $response = $service->getList($countryName,$page,$pagination,$query,$resourceId,$size);
         print_r($response);
-       */
 
-    #----------Search a location  with filter,example call function------------#
-    /*
-    $term = "Cu";
-    $response = $service->getPageListWithFilter($term);
+    #----------get  location by id,example call function------------#
+
+    $id="id";
+    $response = $service->get($id);
     print_r($response);
-    */
+
+
+
 
     #----------Create a location,example call function------------#
     /*
@@ -49,15 +55,7 @@ try {
     );
 
 
-    $response = $service->create($model);
-    print_r($response);
-    */
 
-    #----------Total of location,example call function------------#
-    /*
-        $response = $service->getTotal();
-        print_r($response);
-    */
 
     #----------Delete a location,example call function------------#
    /*

@@ -51,7 +51,6 @@ class UploadController extends BaseController {
     {
         $uri = "/media/upload";
         $response=$this->upload($uri,$file);
-        print_r($response);die;
 
     }
 

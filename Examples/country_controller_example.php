@@ -6,13 +6,15 @@ try {
 
         $service = new Awaraks\Controllers\CountryController();
         #----------Search a country  with pagination and filter,example call function------------#
-        /*
-        $term="Cu";
+
+        $query="Cu";
+        $countryCode="CU";
+        $pagination=true;
         $page=0;
         $size=25;
-        $response = $service->getPageListWithFilter($term,$page,$size);
+        $response = $service->getList($countryCode,$query,$pagination,$page,$size);
         print_r($response);
-        */
+
 
         #----------Create a country,example call function------------#
         /*
@@ -32,18 +34,7 @@ try {
             print_r($response);
         */
 
-        #----------get all country,example call function------------#
-          /*
-            $response = $service->getAll();
-            print_r($response[0]);
-          */
-        #----------list a country with pagination,example call function------------#
-        /*
-            $page=0;
-            $size=25;
-            $response = $service->getPageList($page,$size);
-            print_r($response);
-        */
+
 
         #----------get a country by id,example call function------------#
             /*

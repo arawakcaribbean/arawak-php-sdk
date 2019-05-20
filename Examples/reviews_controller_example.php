@@ -16,18 +16,18 @@ try {
     
 
     #----------Get average evaluation of resource ,example call function------------#
-    /*
-    $idResource="sdfsd";
+
+    $idResource="F6c8i2oBvhGfKisLElHH";
     $response = $service->getEvaluation($idResource);
     print_r($response);
-    */
+
     #----------Get evaluation of resource by user ,example call function------------#
-    /*
-    $idResource="sdfsd";
-    $idUser="sdfsdf";
+
+    $idResource="F6c8i2oBvhGfKisLElHH";
+    $idUser="user-id";
     $response = $service->getEvaluationByUser($idResource,$idUser);
     print_r($response);
-    */
+
     #----------Delete a evaluation,example call function------------#
    /*
     $id="AKeUrWoBvhGfKisLpliW";
@@ -45,18 +45,18 @@ try {
     */
 
     #----------Get average evaluation of resource ,example call function------------#
-    /*
-    $idResource="sdfsd";
+
+    $idResource="F6c8i2oBvhGfKisLElHH";
     $response = $service->getState($idResource);
     print_r($response);
-    */
+
     #----------Get evaluation of resource by user ,example call function------------#
-    /*
-    $idResource="sdfsd";
-    $idUser="sdfsdf";
+
+    $idResource="F6c8i2oBvhGfKisLElHH";
+    $idUser="user-id";
     $response = $service->getStateByUser($idResource,$idUser);
     print_r($response);
-    */
+
     #----------Delete a evaluation,example call function------------#
     /*
      $id="AKeUrWoBvhGfKisLpliW";

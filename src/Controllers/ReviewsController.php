@@ -57,7 +57,7 @@ class ReviewsController extends BaseController {
     }
 
     /**
-     * Get average evaluation of resource, API:"http://api.opencaribbean.org/api/v1/review/evaluations/resource/:resourceId"
+     * Get average evaluation of resource, API:"http://api.opencaribbean.org/api/v1/review/evaluations/average?resourceId=resourceId-value"
      * @param string $resourceId
      * @return integer $average
      * @throws BadRequestException
@@ -73,13 +73,13 @@ class ReviewsController extends BaseController {
 
      */
     public function getEvaluation($resourceId){
-        $uri = "review/evaluations/resource/$resourceId";
+        $uri = "review/evaluations/average?resourceId=$resourceId";
         $response = $this->_get($uri);
         return $response;
     }
 
     /**
-     * Get evaluation of resource and user , API:"http://api.opencaribbean.org/api/v1/review/evaluations/resource/:resourceId/user/:userId"
+     * Get evaluation of resource and user , API:"http://api.opencaribbean.org/api/v1/review/evaluations?resourceId=resourceId-value&userId=userId-value"
      * @param string $resourceId
      * @param string $userId
      * @return ReviewEvaluation $evaluation
@@ -96,7 +96,7 @@ class ReviewsController extends BaseController {
 
      */
     public function getEvaluationByUser($resourceId,$userId){
-        $uri = "review/evaluations/resource/$resourceId/user/$userId";
+        $uri = "review/evaluations?resourceId=$resourceId&userId=$userId";
         $response = $this->_get($uri);
         return $this->mapper->map(json_decode($response), new ReviewEvaluation());
     }
@@ -152,7 +152,7 @@ class ReviewsController extends BaseController {
     }
 
     /**
-     * Get State Reviews of resource , API:"http://api.opencaribbean.org/api/v1/review/status/resource/:resourceId"
+     * Get State Reviews of resource , API:"http://api.opencaribbean.org/api/v1/review/states/stats?resourceId=resourceId-value"
      * @param string $resourceId
      * @return StateReviewResource $data
      * @throws BadRequestException
@@ -168,14 +168,14 @@ class ReviewsController extends BaseController {
 
      */
     public function getState($resourceId){
-        $uri = "review/states/resource/$resourceId";
+        $uri = "review/states/stats?resourceId=$resourceId";
         $response = $this->_get($uri);
-        return $this->mapper->map(json_decode($response), new StateReviewResource());
+        return json_decode($response);
 ;
     }
 
     /**
-     * Get State Reviews of resource and user , API:"http://api.opencaribbean.org/api/v1/review/states/resource/:resourceId/user/:userId"
+     * Get State Reviews of resource and user , API:"http://api.opencaribbean.org/api/v1/review/states?resourceId=resourceId-value&userId=resourceId-value"
      * @param string $resourceId
      * @param string $userId
      * @return ReviewState $data
@@ -192,9 +192,9 @@ class ReviewsController extends BaseController {
 
      */
     public function getStateByUser($resourceId,$userId){
-        $uri = "review/states/resource/$resourceId/user/$userId";
+        $uri = "review/states?resourceId=$resourceId&userId=$userId";
         $response = $this->_get($uri);
-        return $this->mapper->map(json_decode($response), new ReviewState());
+        return json_decode($response);
     }
 
     /**

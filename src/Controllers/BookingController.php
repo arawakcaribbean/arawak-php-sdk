@@ -41,7 +41,15 @@ class BookingController extends BaseController {
     #Booking Resource
 
     /**
-     * Returns a list with all Booking , API:"http://api.opencaribbean.org/api/v1/booking/bookings"
+     * Returns a list with all Booking , API:"http://api.opencaribbean.org/api/v1/booking/bookings?idApp=$idApp&idUser=$idUser&idResource=$idResource&bookingStatus=$bookingStatus&desc=$desc&pagination=$pagination&page=$page&size=$size"
+     * @param string $idApp
+     * @param string $idUser
+     * @param string $idResource
+     * @param string $bookingStatus Available values : CREATED, CONFIRMATED, FREE, RUNNING, FINISHED, CANCELED
+     * @param boolean $desc
+     * @param boolean $pagination
+     * @param integer $page
+     * @param integer $size
      * @return Booking[]
      * @throws BadRequestException
      * @throws BadGatewayException
@@ -55,33 +63,11 @@ class BookingController extends BaseController {
      * @throws ArawaksException
 
      */
-    public function getAll() {
-        $uri = "/booking/bookings";
+    public function getList($idApp,$idUser,$idResource,$bookingStatus,$desc,$pagination,$page,$size) {
+        $uri = "/booking/bookings?idApp=$idApp&idUser=$idUser&idResource=$idResource&bookingStatus=$bookingStatus&desc=$desc&pagination=$pagination&page=$page&size=$size";
         $response = $this->_get($uri);
-        return $this->mapper->mapArray(json_decode($response),array(),"Awaraks\\Mapper\\Booking");
+        return json_decode($response);
 
-    }
-
-    /**
-     * Returns a list with all Booking , API:"http://api.opencaribbean.org/api/v1/booking/bookings/history"
-     * @param string $iduser user Id by get Booking
-     * @return Booking[]
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
-
-     */
-    public function getBookingHistory($iduser) {
-        $uri = "/booking/bookings/history?iduser=$iduser";
-        $response = $this->_get($uri);
-        return $this->mapper->mapArray(json_decode($response),array(),"Awaraks\\Mapper\\Booking");
     }
 
 
@@ -129,28 +115,6 @@ class BookingController extends BaseController {
         return $this->mapper->map(json_decode($response), new Booking());
     }
 
-    /**
-     * Get a Booking By user , API:"http://api.opencaribbean.org/api/v1/booking/bookings/:bookingId/:userId"
-     * @param string $iduser user Id by get Booking
-     * @param string $bookingId
-     * @return Booking[]
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
-
-     */
-    public function getBookingByUser($iduser,$bookingId) {
-        $uri = "/booking/bookings/$bookingId/$iduser";
-        $response = $this->_get($uri);
-        return $this->mapper->mapArray(json_decode($response),array(),"Awaraks\\Mapper\\Booking");
-    }
 
     /**
      * Get a Booking , API:"http://api.opencaribbean.org/api/v1/booking/bookings/:bookingId"
@@ -175,29 +139,7 @@ class BookingController extends BaseController {
     }
 
 
-    /**
-     * Get a Booking By resource Id and range of date , API:"http://api.opencaribbean.org/api/v1/booking/bookings/:bookingId/:startdate/:enddate"
-     * @param string $bookingId
-     * @param string $startdate
-     * @param string $enddate
-     * @return Booking[] $data
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
 
-     */
-    public function getBookingByResourceAndDateRange($bookingId,$startdate,$enddate) {
-        $uri = "/booking/bookings/$bookingId/$startdate/$enddate";
-        $response = $this->_get($uri);
-        return json_decode($response);
-    }
 
 
     /**
@@ -227,7 +169,15 @@ class BookingController extends BaseController {
     #Bookable Resource
 
     /**
-     * Returns a list with all Bookable , API:"http://api.opencaribbean.org/api/v1/bookable/bookables"
+     * Returns a list with all Bookable , API:"http://api.opencaribbean.org/api/v1/booking/bookables?idApp=$idApp&idUser=$idUser&idResource=$idResource&idRate=$idRate&idLocation=$idLocation&pagination=$pagination&page=$page&size=$size"
+     * @param string $idApp
+     * @param string $idUser
+     * @param string $idRate
+     * @param string $idResource
+     * @param string $idLocation
+     * @param boolean $pagination
+     * @param integer $page
+     * @param integer $size
      * @return Bookable[]
      * @throws BadRequestException
      * @throws BadGatewayException
@@ -241,11 +191,34 @@ class BookingController extends BaseController {
      * @throws ArawaksException
 
      */
-    public function getAllBookables() {
-        $uri = "/booking/bookables";
+    public function getListBookable($idApp,$idUser,$idRate,$idResource,$idLocation,$pagination,$page,$size) {
+        $uri = "/booking/bookables?idApp=$idApp&idUser=$idUser&idResource=$idResource&idRate=$idRate&idLocation=$idLocation&pagination=$pagination&page=$page&size=$size";
         $response = $this->_get($uri);
-        return $this->mapper->mapArray(json_decode($response),array(),"Awaraks\\Mapper\\Bookable");
+        return json_decode($response);
+    }
 
+    /**
+     * List all free bookables moments for a resource between two dates , API:"http://api.opencaribbean.org/api/v1/booking/bookables/free?resourceId=$resourceId&startDate=$startDate&endDate=$endDate"
+     * @param string $resourceId
+     * @param string $startDate
+     * @param string $endDate
+     * @return Bookable[]
+     * @throws BadRequestException
+     * @throws BadGatewayException
+     * @throws ForbiddenException
+     * @throws BadGatewayException
+     * @throws GatewayTimeoutException
+     * @throws InternalServerErrorException
+     * @throws NotFoundException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ArawaksException
+
+     */
+    public function getListBookableFree($resourceId,$startDate,$endDate) {
+        $uri = "/booking/bookables/free?resourceId=$resourceId&startDate=$startDate&endDate=$endDate";
+        $response = $this->_get($uri);
+        return json_decode($response);
     }
 
 
@@ -320,29 +293,7 @@ class BookingController extends BaseController {
     }
 
 
-    /**
-     * Get a Bookable By resource Id and range of date , API:"http://api.opencaribbean.org/api/v1/booking/bookables/:bookingId/:startdate/:enddate"
-     * @param string $bookingId
-     * @param string $startdate
-     * @param string $enddate
-     * @return Bookable[] $data
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
 
-     */
-    public function getBookableByResourceAndDateRange($bookingId,$startdate,$enddate) {
-        $uri = "/booking/bookables/$bookingId/$startdate/$enddate";
-        $response = $this->_get($uri);
-        return json_decode($response);
-    }
 
 
     /**

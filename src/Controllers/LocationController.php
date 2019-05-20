@@ -35,8 +35,15 @@ class LocationController extends BaseController {
     }
 
     /**
-     * Returns a list with all locations , API:"http://api.opencaribbean.org/api/v1/location/locations"
+     * Returns a list of locations , API:"http://api.opencaribbean.org/api/v1/location/locations?countryName=CU&page=0&pagination=false&query=melia&resourceId=sdfsdf&size=10"
      * @return Location[]
+     * @param string $countryId
+     * @param string $countryName
+     * @param string $query
+     * @param string $resourceId
+     * @param boolean $pagination
+     * @param integer $page
+     * @param integer $size
      * @throws BadRequestException
      * @throws BadGatewayException
      * @throws ForbiddenException
@@ -49,17 +56,17 @@ class LocationController extends BaseController {
      * @throws ArawaksException
 
      */
-    public function getAll() {
-        $uri = "location/locations";
+    public function getList($countryName,$page,$pagination,$query,$resourceId,$size) {
+        $uri = "location/locations?countryName=$countryName&page=$page&pagination=$pagination&query=$query&resourceId=$resourceId&size=$size";
         $response = $this->_get($uri);
-        return $this->mapper->mapArray(json_decode($response),array(),"Awaraks\\Mapper\\Location");
+        return json_decode($response);
 
     }
 
     /**
-     * Returns a list of locations applying filters with paging, API:"http://api.opencaribbean.org/api/v1/location/locations/_search?query=cuba"
-     * @param string $query term of search
-     * @return PageResultCountry $pageResultCountry
+     * Get a location by id , API:"http://api.opencaribbean.org/api/v1/location/locations/sd"
+     * @return Location
+     * @param string $id
      * @throws BadRequestException
      * @throws BadGatewayException
      * @throws ForbiddenException
@@ -72,12 +79,14 @@ class LocationController extends BaseController {
      * @throws ArawaksException
 
      */
-    public function getPageListWithFilter($query) {
-        $uri = "location/locations/_search?query=$query";
+    public function get($id) {
+        $uri = "location/locations/$id";
         $response = $this->_get($uri);
-        return $this->mapper->map(json_decode($response), new PageResultLocation());
+        return json_decode($response);
 
     }
+
+
 
     /**
      * Create a object Location
@@ -101,26 +110,7 @@ class LocationController extends BaseController {
         return $this->mapper->map(json_decode($response), new Location());
     }
 
-    /**
-     * Get total of Locations , API:"http://api.opencaribbean.org/api/v1/location/locations/size"
-     * @return Location $location
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
 
-     */
-    public function getTotal($id) {
-        $uri = "location/locations/size";
-        $response = $this->_get($uri);
-        return $response;
-    }
 
     /**
      * Delete a Locations , API:"http://api.opencaribbean.org/api/v1/location/locations/:id"
@@ -149,7 +139,7 @@ class LocationController extends BaseController {
 
     #MAPS
     /**
-     * Get info for places id , API:"http://api.opencaribbean.org/api/v1/maps/places/{placeId}"
+     * Get info for places id , API:"http://api.opencaribbean.org/api/v1/maps/places?placeId=zxcxc"
      * @params string $placeId
      * @return \stdClass $mapInfo
      * @throws BadRequestException
@@ -164,8 +154,8 @@ class LocationController extends BaseController {
      * @throws ArawaksException
 
      */
-    public function getPlaceInfo($placeId) {
-        $uri = "/location/maps/places/$placeId";
+    public function getPlace($placeId) {
+        $uri = "/location/maps/place?placeId=$placeId";
         $response = $this->_get($uri);
         return json_decode($response);
 
@@ -173,7 +163,7 @@ class LocationController extends BaseController {
 
 
     /**
-     * Get places by search criteria , API:"http://api.opencaribbean.org/api/v1/maps/places/name/{placeName}"
+     * Get places by search criteria , API:"http://api.opencaribbean.org/api/v1/location/maps/places?name=sdfsd"
      * @params string $placeName
      * @return \stdClass[] $mapInfo
      * @throws BadRequestException
@@ -188,38 +178,14 @@ class LocationController extends BaseController {
      * @throws ArawaksException
 
      */
-    public function getPlaceListByPlaceName($placeName) {
-        $uri = "/location/maps/places/name/$placeName";
+    public function getPlaceList($placeName) {
+        $uri = "/location/maps/places?name=$placeName";
         $response = $this->_get($uri);
         return json_decode($response);
 
     }
 
-    /**
-     * Get the places list near to a location , API:"http://api.opencaribbean.org/api/v1/maps/directions/{origin_lat1}/{origin_lon1}/{destiny_lat2}/{destiny_lon2}"
-     * @params string $origin_lat1
-     * @params string $origin_lon1
-     * @params string $destiny_lat2
-     * @params string $destiny_lon2
-     * @return \stdClass $mapInfo
-     * @throws BadRequestException
-     * @throws BadGatewayException
-     * @throws ForbiddenException
-     * @throws BadGatewayException
-     * @throws GatewayTimeoutException
-     * @throws InternalServerErrorException
-     * @throws NotFoundException
-     * @throws ServiceUnavailableException
-     * @throws UnauthorizedException
-     * @throws ArawaksException
 
-     */
-    public function getDirectionsMap($origin_lat1,$origin_lon1,$destiny_lat2,$destiny_lon2) {
-        $uri = "/location/maps/directions/$origin_lat1/$origin_lon1/$destiny_lat2/$destiny_lon2";
-        $response = $this->_get($uri);
-        return json_decode($response);
-
-    }
 
 
 

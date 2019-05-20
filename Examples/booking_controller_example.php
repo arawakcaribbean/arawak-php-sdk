@@ -9,16 +9,18 @@ try {
 
     #######    BOOKING
     #----------get all booking,example call function------------#
-    /*
-        $response = $service->getAll();
+        $idApp="sdk-app";
+        $idUser="user-id";
+        $idResource="resource-id";
+        $bookingStatus="CREATED";
+        $desc=true;
+        $pagination=false;
+        $page=1;
+        $size=10;
+        $response = $service->getList($idApp,$idUser,$idResource,$bookingStatus,$desc,$pagination,$page,$size);
         print_r($response);
-    */
-   #----------get history booking,example call function------------#
-     /*
-        $iduser="";
-        $response = $service->getBookingHistory($iduser);
-        print_r($response);
-    */
+
+
     #----------create object booking,example call function------------#
     /*
     $model = new \Awaraks\Entity\BookingEntity("003bca0f-2865-45e5-aee2-02b331d96401","2022-05-14T04:00:45.065Z","2019-05-14T04:00:45.065Z","web-demo","2734c2u2u34yi2u3423","83274jk34k2kjhkj23423","CREATED");
@@ -26,13 +28,7 @@ try {
     print_r($response);
     */
 
-    #----------get booking By User,example call function------------#
-    /*
-       $iduser="";
-       $idResource="";
-       $response = $service->getBookingByUser($idResource,$iduser);
-       print_r($response);
-    */
+
     #----------get booking ,example call function------------#
     /*
     $idResource="";
@@ -46,15 +42,9 @@ try {
     print_r($response);
     */
 
-    #----------get booking by resource and date range ,example call function------------#
 
-    /*
-    $idResource="e32da60d-5c66-4f33-a672-94b9a59d37f2";
-    $startDate="2022-05-14T04:00:45.065Z";
-    $endDate="2022-05-14T04:00:45.065Z";
-    $response = $service->getBookingByResourceAndDateRange($idResource,$startDate,$endDate);
-    print_r($response);
-    */
+
+
 
 
 
@@ -62,10 +52,17 @@ try {
 
     #######    BOOKABLE
     #----------get all Bookable,example call function------------#
-        /*
-        $response = $service->getAllBookables();
+    $idApp="sdk-app";
+    $idUser="user-id";
+    $idResource="resource-id";
+    $idLocation="location-id";
+    $idRate="rate-id";
+    $pagination=false;
+    $page=1;
+    $size=10;
+        $response = $service->getListBookable($idApp,$idUser,$idRate,$idResource,$idLocation,$pagination,$page,$size);
         print_r($response);
-        */
+
 
     #----------create object Bookable,example call function------------#
 
@@ -94,7 +91,7 @@ try {
     $idResource="e32da60d-5c66-4f33-a672-94b9a59d37f2";
     $startDate="2022-05-14T04:00:45.065Z";
     $endDate="2022-05-14T04:00:45.065Z";
-    $response = $service->getBookableByResourceAndDateRange($idResource,$startDate,$endDate);
+    $response = $service->getListBookableFree($idResource,$startDate,$endDate);
     print_r($response);
 
 
